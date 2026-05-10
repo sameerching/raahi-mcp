@@ -1,5 +1,3 @@
-"""Domain models for station lookup."""
-
 from pydantic import BaseModel, Field
 
 

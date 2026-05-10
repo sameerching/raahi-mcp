@@ -1,5 +1,3 @@
-"""MCP transport wrapper for the Raahi station lookup service."""
-
 from mcp.server.fastmcp import FastMCP
 
 from raahi_mcp.config import settings
@@ -15,9 +13,14 @@ mcp = FastMCP(name="Raahi")
 
 @mcp.tool(description=LOOKUP_DESCRIPTION)
 def lookup_station(query: str) -> dict:
-    """Read-only MCP tool wrapper."""
+    """Read-only MCP tool that delegates to pure station lookup logic."""
     return lookup_station_data(query)
 
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http", host="127.0.0.1", port=settings.port, path="/mcp")
+    mcp.run(
+        transport="streamable-http",
+        host="127.0.0.1",
+        port=settings.port,
+        path="/mcp",
+    )
