@@ -15,7 +15,7 @@ Raahi is a **read-only** Indian travel MCP server prototype.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ".[dev]"
+pip install -e ".[dev,server]"
 ```
 
 ## Run tests

@@ -1,8 +1,9 @@
+"""MCP transport wrapper for the Raahi station lookup service."""
+
 from mcp.server.fastmcp import FastMCP
 
 from raahi_mcp.config import settings
-from raahi_mcp.domain import LookupMetadata, LookupResponse, Station
-from raahi_mcp.mock_data import STATIONS
+from raahi_mcp.station_service import lookup_station_data
 
 LOOKUP_DESCRIPTION = (
     "Look up Indian railway station codes by station code, station name, city, state, "
@@ -12,27 +13,10 @@ LOOKUP_DESCRIPTION = (
 mcp = FastMCP(name="Raahi")
 
 
-def _matches(station: Station, query: str) -> bool:
-    q = query.strip().lower()
-    fields = [
-        station.stationCode,
-        station.stationName,
-        station.city,
-        station.state,
-        *station.aliases,
-    ]
-    return any(q in field.lower() for field in fields)
-
-
 @mcp.tool(description=LOOKUP_DESCRIPTION)
 def lookup_station(query: str) -> dict:
-    matches = [station for station in STATIONS if _matches(station, query)]
-    response = LookupResponse(
-        query=query,
-        stations=matches,
-        metadata=LookupMetadata(provider=settings.provider, mock=True, app="Raahi"),
-    )
-    return response.model_dump()
+    """Read-only MCP tool wrapper around station lookup business logic."""
+    return lookup_station_data(query)
 
 
 if __name__ == "__main__":
