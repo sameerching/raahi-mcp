@@ -10,12 +10,12 @@ Raahi is a **read-only** Indian travel MCP server prototype.
 - Mock data provider only
 - No booking, cancellation, payment, login automation, scraping, or captcha/OTP bypass
 
-## Setup
+## Setup for development and tests (without MCP runtime)
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ".[dev,server]"
+pip install -e ".[dev]"
 ```
 
 ## Run tests
@@ -28,6 +28,14 @@ pytest
 
 ```bash
 ruff check .
+```
+
+## Setup for MCP server runtime
+
+Install with server extras when you want to run the MCP transport:
+
+```bash
+pip install -e ".[dev,server]"
 ```
 
 ## Run the MCP server

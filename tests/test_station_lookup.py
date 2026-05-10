@@ -1,6 +1,11 @@
 from raahi_mcp.station_service import lookup_station_data
 
 
+def test_import_station_service_without_mcp() -> None:
+    result = lookup_station_data("SBC")
+    assert isinstance(result, dict)
+
+
 def test_lookup_by_station_code() -> None:
     response = lookup_station_data("SBC")
     assert response["stations"]
