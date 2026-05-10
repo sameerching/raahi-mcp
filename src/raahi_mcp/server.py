@@ -15,7 +15,7 @@ mcp = FastMCP(name="Raahi")
 
 @mcp.tool(description=LOOKUP_DESCRIPTION)
 def lookup_station(query: str) -> dict:
-    """Read-only MCP tool that delegates to pure station lookup logic."""
+    """Read-only MCP tool wrapper."""
     return lookup_station_data(query)
 
 

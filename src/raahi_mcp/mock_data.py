@@ -1,3 +1,5 @@
+"""Mock station dataset for Phase 1."""
+
 from raahi_mcp.domain import Station
 
 STATIONS: list[Station] = [

@@ -4,13 +4,13 @@ Raahi is a **read-only** Indian travel MCP server prototype.
 
 > This project is not an official IRCTC or Indian Railways app.
 
-## Scope in this phase
+## Phase 1 scope
 
-- Read-only station lookup via MCP tool `lookup_station`
-- Mock data provider only
-- No booking, cancellation, payment, login automation, scraping, or captcha/OTP bypass
+- A single read-only MCP tool: `lookup_station`
+- Mock station data provider only
+- No booking, cancellation, payments, login automation, scraping, or captcha/OTP bypass
 
-## Setup for development and tests (without MCP runtime)
+## Install for tests and lint
 
 ```bash
 python -m venv .venv
@@ -30,9 +30,7 @@ pytest
 ruff check .
 ```
 
-## Setup for MCP server runtime
-
-Install with server extras when you want to run the MCP transport:
+## Install for MCP server runtime
 
 ```bash
 pip install -e ".[dev,server]"
@@ -44,19 +42,17 @@ pip install -e ".[dev,server]"
 python -m raahi_mcp.server
 ```
 
-Default local endpoint (Streamable HTTP):
+Default endpoint:
 
 - `http://localhost:8000/mcp`
 
 ## Test with MCP Inspector
 
-In another shell while server is running:
-
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-Connect to:
+Use:
 
 - Transport: Streamable HTTP
 - URL: `http://localhost:8000/mcp`
@@ -67,12 +63,8 @@ Connect to:
 ngrok http 8000
 ```
 
-Then use the generated HTTPS forwarding URL with `/mcp` appended.
+Append `/mcp` to the ngrok HTTPS URL when configuring MCP clients.
 
-## Later: connect to ChatGPT Developer Mode
+## Later connection to ChatGPT Developer Mode
 
-When ready, configure your MCP connector in ChatGPT Developer Mode with your ngrok HTTPS URL ending in `/mcp`.
-
-## Environment
-
-Copy `.env.example` to `.env` and edit as needed.
+Use your HTTPS MCP URL (ending in `/mcp`) in ChatGPT Developer Mode.

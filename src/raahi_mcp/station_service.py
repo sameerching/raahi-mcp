@@ -18,7 +18,7 @@ def _matches(station: Station, query: str) -> bool:
 
 
 def lookup_station_data(query: str) -> dict:
-    """Read-only lookup for Indian railway station data backed by mock records."""
+    """Read-only lookup against mock station records."""
     matches = [station for station in STATIONS if _matches(station, query)]
     response = LookupResponse(
         query=query,
